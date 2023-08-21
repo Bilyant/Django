@@ -1,0 +1,8 @@
+<h1>DeleteView</h1>
+
+<form method="post" action="{% url 'delete view' pk=books.id %}">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <hr/>
+    <button>Delete</button>
+</form>

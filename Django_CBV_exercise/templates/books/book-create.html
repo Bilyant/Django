@@ -1,0 +1,8 @@
+<h1>CreateView</h1>
+
+<form method="post" action="{% url 'create view' %}">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <hr/>
+    <button>Create</button>
+</form>

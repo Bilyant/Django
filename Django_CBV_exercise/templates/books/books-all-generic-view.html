@@ -1,0 +1,69 @@
+<h1>Books Generic View</h1>
+
+<a href="{% url 'create view' %}">Create</a>
+<hr/>
+
+<form action="{% url 'list view' %}?page={{ page_obj.number }}">
+    <label>
+        Title: <input name="search" value="{{ search }}">
+    </label>
+    <button>Search</button>
+    {#    {% csrf_token %}#}
+</form>
+
+<style>
+    .lists {
+        display: flex;
+    }
+
+    ul {
+        list-style: none;
+    }
+</style>
+
+<div class="lists">
+    <div>
+
+        <ul>
+            {% for book in books_list %}
+
+                <li>
+                    <a href="{% url 'detail view' pk=book.id %}">
+                        {{ book.pk }}: Title: {{ book.title }} by {{ book.author }}
+                    </a>
+                <a href="{% url 'delete view' pk=book.id %}">Terminate</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+
+        <ul>
+            {% for book in object_list %}
+
+                <li>
+                    <a href="{% url 'detail view' pk=book.id %}">
+                        {{ book.pk }} Title: {{ book.title }} by {{ book.author }}
+                    </a>
+                <a href="{% url 'delete view' pk=book.id %}">Terminate</a>
+                </li>
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}">&lt;</a>
+{% else %}
+    <a>&lt;</a>
+{% endif %}
+
+<span>page {{ page_obj.number }}/{{ paginator.num_pages }}</span>
+
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}&search={{ search }}">&gt;</a>
+{% else %}
+    <a>&gt;</a>
+{% endif %}
