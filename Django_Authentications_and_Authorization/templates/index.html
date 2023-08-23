@@ -1,0 +1,27 @@
+<h1>IndexView</h1>
+
+{% if not request.user.is_authenticated %}
+
+    <div>
+        <a href="{% url 'login_user' %}">Login</a>
+    </div>
+
+{% else %}
+
+    <div>
+        <a href="{% url 'logout_user' %}">Logout</a>
+    </div>
+
+{% endif %}
+
+<div>
+    <span>csrf_token: {{ csrf_token }}</span>
+</div>
+
+<h2>
+    <span>Current user: </span> {{ request.user }}
+</h2>
+
+<p>Authenticated: {{ request.user.is_authenticated }}</p>
+<p>Has permission: {{ has_permission }}</p>
+<p>Users count: {{ users_count }}</p>
