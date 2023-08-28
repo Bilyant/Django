@@ -1,0 +1,45 @@
+<style>
+    ul {
+        display: flex;
+        gap: 2%;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+</style>
+
+<nav>
+    <ul>
+        {% if request.user.is_authenticated %}
+
+            <li>
+                <a href="{% url 'details user' pk=request.user.id %}">Profile</a>
+            </li>
+            <li>
+                <a href="{% url 'logout user' %}">Logout</a>
+            </li>
+
+        {% else %}
+
+            <li>
+                <a href="{% url 'register user' %}">Register</a>
+            </li>
+            <li>
+                <a href="{% url 'login user' %}">Login</a>
+            </li>
+
+        {% endif %}
+    </ul>
+
+</nav>
+
+<hr/>
+
+<h3>
+    Current user: {{ request.user }}
+</h3>

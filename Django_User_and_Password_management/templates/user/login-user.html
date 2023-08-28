@@ -1,0 +1,12 @@
+{% include 'base/navigation.html' %}
+<h1>Login</h1>
+
+<form action="{% url 'login user' %}" method="post">
+
+    {{ form.as_p }}
+    {% csrf_token %}
+{#    <input type="hidden" value="{{ next }}" name="next"/>#}
+
+    <button>Login</button>
+
+</form>
